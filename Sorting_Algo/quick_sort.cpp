@@ -5,27 +5,32 @@ using namespace std;
 int partition(vector<int> &v, int lo, int hi){
     int pivot = v[lo];
 
-    int i = lo, j=hi;
+    int left = lo, right=hi;
 
-    while(i<j){
-        while(v[i] <= pivot && i <= hi){
-            i++;
+    while(left<right){
+        while(v[left] <= pivot && left <= hi){
+            left++;
         }
 
-        while(v[i] > pivot && j >= lo){
-            j--;
+        while(v[right] > pivot && right >= lo){
+            right--;
         }
 
-        if(i<j) swap(v[i], v[j]);
+        if(left<right) swap(v[left], v[right]);
     }
-    return j;
+    
+    /* Right is final position for pivot */
+    v[lo] = v[right];
+    v[right] = pivot;
+
+    return right;
 }
 
 void quicksort(vector<int> &v, int lo, int hi){
     if(lo < hi){
-        int pidx = partition(v, lo, hi);
-        quicksort(v, lo, pidx-1);
-        quicksort(v, pidx+1, hi);
+        int pivot = partition(v, lo, hi);
+        quicksort(v, lo, pivot-1);
+        quicksort(v, pivot+1, hi);
     }
 }
 
