@@ -17,6 +17,7 @@ class B{
  
 class C: public A, public B{
     public:
+    // using A :: func1;
     void func3(){
         cout<<"Inside function 3"<<endl;
     }

@@ -11,7 +11,7 @@ class Animal{
         cout<<"Barking"<<endl;
     }
 };
-
+    
 class Human{
     public:
     string color;
